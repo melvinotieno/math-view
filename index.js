@@ -6,13 +6,6 @@ class MathView extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    const div = document.createElement("div");
-    div.innerHTML = convertLatexToMarkup(this.equation);
-    shadowRoot.appendChild(div);
-  }
-
   static get observedAttributes() {
     return ["latex"];
   }
@@ -20,6 +13,13 @@ class MathView extends HTMLElement {
   attributeChangedCallback(property, oldValue, newValue) {
     if (oldValue === newValue) return;
     this[property] = newValue;
+  }
+
+  connectedCallback() {
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    const div = document.createElement("div");
+    div.innerHTML = convertLatexToMarkup(this.latex);
+    shadowRoot.appendChild(div);
   }
 }
 
