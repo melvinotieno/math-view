@@ -1,6 +1,6 @@
 {
   "name": "math-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A web component that renders equations written using mathlive",
   "main": "index.js",
   "scripts": {
