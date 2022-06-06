@@ -17,9 +17,31 @@ class MathView extends HTMLElement {
 
   connectedCallback() {
     const shadowRoot = this.attachShadow({ mode: "open" });
-    const div = document.createElement("div");
-    div.innerHTML = convertLatexToMarkup(this.latex);
-    shadowRoot.appendChild(div);
+    const element = document.createElement(this.tag | "span");
+
+    const mathstyles = ["displaystyle", "textstyle"];
+    const letterShapeStyles = ["tex", "french", "iso", "upright", "auto"];
+
+    let mathstyle = "displaystyle";
+    let letterShapeStyle = "tex";
+
+    if (this.hasAttribute("mathstyle") && mathstyles.includes(this.mathstyle)) {
+      mathstyle = this.mathstyle;
+    }
+
+    if (
+      this.hasAttribute("lettershapestyle") &&
+      letterShapeStyles.includes(this.lettershapestyle)
+    ) {
+      letterShapeStyle = this.lettershapestyle;
+    }
+
+    element.innerHTML = convertLatexToMarkup(this.latex, {
+      mathstyle,
+      letterShapeStyle,
+    });
+
+    shadowRoot.appendChild(element);
   }
 }
 
