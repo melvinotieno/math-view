@@ -2,8 +2,7 @@ import { convertLatexToMarkup } from "mathlive";
 
 class MathView extends HTMLElement {
   constructor() {
-    // super should always be called first in the constructor
-    super();
+    super(); // super should always be called first in the constructor
   }
 
   static get observedAttributes() {
@@ -17,16 +16,19 @@ class MathView extends HTMLElement {
 
   connectedCallback() {
     const shadowRoot = this.attachShadow({ mode: "open" });
-    const element = document.createElement(this.tag | "span");
+    const element = document.createElement(this.tag || "span");
 
-    const mathstyles = ["displaystyle", "textstyle"];
+    const defaultModes = ["inline-math", "math", "text"];
     const letterShapeStyles = ["tex", "french", "iso", "upright", "auto"];
 
-    let mathstyle = "displaystyle";
-    let letterShapeStyle = "tex";
+    let defaultMode = "math";
+    let letterShapeStyle = "auto";
 
-    if (this.hasAttribute("mathstyle") && mathstyles.includes(this.mathstyle)) {
-      mathstyle = this.mathstyle;
+    if (
+      this.hasAttribute("defaultmode") &&
+      defaultModes.includes(this.defaultmode)
+    ) {
+      defaultMode = this.defaultmode;
     }
 
     if (
@@ -37,7 +39,7 @@ class MathView extends HTMLElement {
     }
 
     element.innerHTML = convertLatexToMarkup(this.latex, {
-      mathstyle,
+      defaultMode,
       letterShapeStyle,
     });
 
