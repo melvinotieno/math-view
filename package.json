@@ -1,27 +1,24 @@
 {
   "name": "math-view",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A web component that renders equations written using mathlive",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "license": "MIT",
+  "author": "Melvin Otieno",
+  "homepage": "https://github.com/melvinotieno/math-view#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/melvinotieno/math-view.git"
+  },
+  "bugs": {
+    "url": "https://github.com/melvinotieno/math-view/issues"
   },
   "keywords": [
     "mathlive",
     "math view",
     "math equation"
   ],
-  "author": "Melvin Otieno",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/melvinotieno/math-view/issues"
-  },
-  "homepage": "https://github.com/melvinotieno/math-view#readme",
+  "main": "index.js",
   "peerDependencies": {
-    "mathlive": "^0.73.7"
+    "mathlive": "^0.104.0"
   }
 }
